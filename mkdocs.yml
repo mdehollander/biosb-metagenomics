@@ -8,3 +8,13 @@ repo_name: biosb-metagenomics
 theme:
   name: material
 
+# Navigation
+nav:
+  - Home: index.md
+  - Data processing:
+    - Introduction: data-processing/intro.md
+    - Quality Control: data-processing/quality-control.md
+    - Assembly: data-processing/assembly.md
+    - Binning: data-processing/binning.md
+    - Taxonomic annotation: data-processing/taxonomic-annotation.md
+    - Functional-annotation: data-processing/functional-annotation.md
