@@ -1,3 +1,6 @@
+## Slides
+[:fontawesome-solid-file-pdf: Download the presentation](../assets/pdf/introduction.pdf){: .md-button }
+
 ```sh title="change-dir.sh"
 cd data/
 ```

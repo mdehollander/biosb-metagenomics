@@ -1,4 +1,3 @@
-
 site_name: Biosb Computational Metagenomics
 
 # Repository
@@ -32,3 +31,9 @@ markdown_extensions:
   - pymdownx.details #  collapsible admonition
   - admonition # Create info blocks for attention, abstract, bug, caution, danger, example, failure, info, hint, important, note, tip, success, question, quote, and warning
   - pymdownx.superfences # Styling code blocks, e.g. adding title
+  - attr_list # Format buttons
+  # Fontawesome icons
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
