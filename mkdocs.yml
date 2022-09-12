@@ -1,3 +1,4 @@
+
 site_name: Biosb Computational Metagenomics
 
 # Repository
@@ -18,3 +19,16 @@ nav:
     - Binning: data-processing/binning.md
     - Taxonomic annotation: data-processing/taxonomic-annotation.md
     - Functional-annotation: data-processing/functional-annotation.md
+
+markdown_extensions:
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - admonition # Create info blocks for attention, abstract, bug, caution, danger, example, failure, info, hint, important, note, tip, success, question, quote, and warning
+  - pymdownx.tilde
+  - pymdownx.tabbed
+  - pymdownx.keys
+  - pymdownx.details #  collapsible admonition
+  - admonition # Create info blocks for attention, abstract, bug, caution, danger, example, failure, info, hint, important, note, tip, success, question, quote, and warning
+  - pymdownx.superfences # Styling code blocks, e.g. adding title
