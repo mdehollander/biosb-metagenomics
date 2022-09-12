@@ -1,4 +1,10 @@
 site_name: Biosb Computational Metagenomics
+
+# Repository
+repo_url: https://github.com/mdehollander/biosb-metagenomics
+repo_name: biosb-metagenomics
+
+# Styling
 theme:
   name: material
 
