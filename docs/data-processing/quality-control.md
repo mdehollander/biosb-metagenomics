@@ -136,3 +136,9 @@ Alternative trimming with bbduk. Compare poly-g tail filtering, adapter trimming
 
 !!! question "Exercise" 
     How many PhiX sequences are detected?
+
+### Quickly check what is in this metagenome
+
+    sendsketch.sh --in=sampleA_R1.nophix.fastq.gz --in2=sampleA_R2.nophix.fastq.gz threads=4 -Xmx=500m
+
+Kraken2 or sourmash gather are alternatives
