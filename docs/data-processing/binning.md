@@ -17,7 +17,7 @@ Now, many tools need bam files to be sorted in order to work. Therefore, we will
 
 Now, we will create a depth table, which can be used by binning tools to identify genomic entities (contigs, here) that have similar coverage across samples.
 
-    jgi_summarize_bam_contig_depts --outputDepth depth.tsv bam/sample_0.sorted.bam bam/sample_1.sorted.bam bam/sample_2.sorted.bam bam/sample_3.sorted.bam bam/sample_4.sorted.bam bam/sample_5.sorted.bam
+    jgi_summarize_bam_contig_depths --outputDepth depth.tsv bam/sample_0.sorted.bam bam/sample_1.sorted.bam bam/sample_2.sorted.bam bam/sample_3.sorted.bam bam/sample_4.sorted.bam bam/sample_5.sorted.bam
 
 Now, we can run metabat to find our bins:
 
