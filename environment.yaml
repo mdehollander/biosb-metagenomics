@@ -4,6 +4,7 @@ channels:
 dependencies:
   - fastp==0.23.2
   - multiqc==1.13a
+  - fastqc==0.11.9
   - bbmap==38.98
   - cat==5.2.3
   - coverm==0.6.1
