@@ -211,4 +211,6 @@ Now try it locally, using sourmash
         the recovered matches hit 3.9% of the query (unweighted)
 
 
-        Kraken2 or sourmash gather are alternatives
+Compare with kraken
+
+    kraken2 --db k2_standard_08gb_20220926/ --threads 16 --output sample_0.kraken --report sample_0.kraken.report --gzip-compressed --use-names sample_0.nophix.fastq.gz
