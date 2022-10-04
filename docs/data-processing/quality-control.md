@@ -178,5 +178,37 @@ Alternative trimming with bbduk. Compare poly-g tail filtering, adapter trimming
 
         Total Time: 	17.147 seconds.
 
+Now try it locally, using sourmash
 
-Kraken2 or sourmash gather are alternatives
+    sourmash compute -k51 --scaled 10000 sample_0.nophix.fastq.gz -o sample_0.sig
+    sourmash gather sample_0.sig gtdb-rs207.genomic-reps.dna.k51.lca.json.gz
+
+
+
+??? done "Output"
+        == This is sourmash version 4.4.3. ==
+        == Please cite Brown and Irber (2016), doi:10.21105/joss.00027. ==
+
+        select query k=51 automatically.
+        loaded query: sample_0.nophix.fastq.gz... (k=51, DNA)
+        loaded 1 databases.
+
+        Starting prefetch sweep across databases.
+        Found 39 signatures via prefetch; now doing gather.
+
+        overlap     p_query p_match
+        ---------   ------- -------
+        4.7 Mbp        1.0%  100.0%    GCF_001426945.1 Pseudolabrys sp. Root...
+        4.5 Mbp        1.0%  100.0%    GCF_001427105.1 Sphingopyxis sp. Root...
+        4.0 Mbp        0.9%  100.0%    GCF_001427635.1 Pseudoxanthomonas sp....
+        3.9 Mbp        0.8%  100.0%    GCF_001428805.1 Aeromicrobium sp. Roo...
+        1.2 Mbp        0.3%   37.4%    GCF_000691165.1 Bacillus safensis FO-...
+        240.0 kbp      0.0%    2.3%    GCF_900186955.1 Bacillus pumilus stra...
+        270.0 kbp      0.0%    1.4%    GCF_001307105.1 Bacillus australimari...
+        found less than 50.0 kbp in common. => exiting
+
+        found 7 matches total;
+        the recovered matches hit 3.9% of the query (unweighted)
+
+
+        Kraken2 or sourmash gather are alternatives
