@@ -17,7 +17,22 @@ Now, many tools need bam files to be sorted in order to work. Therefore, we will
 
 The sorted bam files can also be index, so other tools can quickly extract alignments
 
-    samtools index *.sorted.bam
+    for bam in *.sorted.bam; do samtools index $bam; done
+
+We can first get an idea if the different genomes can be seperated by gc-content and coverage. With [Blobtools](https://github.com/DRL/blobtools) the coverage and gc-content of the contigs can be plotted and visualy bins or blobs can be detected
+
+    wget ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdump.tar.gz
+    tar zxvf taxdump.tar.gz
+    blobtools nodesdb --nodes db/nodes.dmp --names db/names.dmp
+
+    blobtools create -i data/precomputed/assembly/final.contigs.fa -b data/precomputed/bam/sample_0.sorted.bam -b data/precomputed/bam/sample_1.sorted.bam -b data/precomputed/bam/sample_2.sorted.bam -b data/precomputed/bam/sample_3.sorted.bam -b data/precomputed/bam/sample_4.sorted.bam -b data/precomputed/bam/sample_5.sorted.bam
+
+    blobtools view -i blobDB.json
+    blobtools plot -i blobDB.json
+
+!!! question Excercise
+    Take a look at the `blobDB.json.bestsum.phylum.p8.span.100.blobplot.bam0.png` file. How many large genome bins can you detect? How is this for the other files?
+
 
 Now, we will create a depth table, which can be used by binning tools to identify genomic entities (contigs, here) that have similar coverage across samples.
 
