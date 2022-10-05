@@ -15,6 +15,10 @@ Now, many tools need bam files to be sorted in order to work. Therefore, we will
 
     samtools sort precomputed/bam/sample_0.bam -o bam/sample_0.sorted.bam
 
+The sorted bam files can also be index, so other tools can quickly extract alignments
+
+    samtools index *.sorted.bam
+
 Now, we will create a depth table, which can be used by binning tools to identify genomic entities (contigs, here) that have similar coverage across samples.
 
     jgi_summarize_bam_contig_depths --outputDepth depth.tsv bam/sample_0.sorted.bam bam/sample_1.sorted.bam bam/sample_2.sorted.bam bam/sample_3.sorted.bam bam/sample_4.sorted.bam bam/sample_5.sorted.bam
@@ -45,6 +49,6 @@ Now, we will let checkm predict the taxonomy of the bins and evaluate their comp
 
 This command will take some time but it will give us a detailed breakdown of each genome predicted taxonomy and completeness.
 
-With the bam files, a coverage file can also be created with the tool CoverM
+With the bam files, a coverage file can also be created with the tool [CoverM](https://github.com/wwood/CoverM)
 
     coverm contig -b data/precomputed/bam/sample_*.sorted.bam -m mean -t 16 -o coverage.tsv
