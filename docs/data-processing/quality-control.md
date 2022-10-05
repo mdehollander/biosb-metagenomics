@@ -33,74 +33,29 @@ This search does not retun any hits. But often the end of the sequences contain 
         GCGCCACGCCGAGCACCGACGGCATCATCGGCACCCACACGCCGTGTGTGAACCTGTCTCTTATACACATCTCCGAGCCACGAGACCACCTGTTGCATCTCGTATGCCGTCTTCTGCTTGAAAATGGGGGGGGGGGGGGGGGGGGGGGGGG
         CTCTTCATCCGTTCCGGCGCCTGCATCCATTCCCGCGGCGCCGGTTGGCGGGGGGGGGGGGGGGGGGGGGGGGGGTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
 
-If they poly-g tails would be of low quality, they would be trimmed of during quality control. But that is not the case. See this example:
 
-    @A00597:62:HGMVNDRXX:2:1254:30798:1939 1:N:0:CACCTGTTGC+ATTGACACAT
-    GAGTCGATCGAGGAGATGAAGCACGCGGAGAAGGTCATTCACCGCATCCTCTACTTCGATGCTGTCTCTTATACACATCCCGAGCCCACGAGACCACCTGTTGCATCTCGTATGCCGTCTTCTGCTTGAAAAGGGGGGGGGGGGGGGGGGG
-    +
-    :FF:FFF:FFFFFF:FFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFF:FFF:FFFF:FFFFFFFFF:FFFFFFF,FFFFFFFFFFFFF:F,FF:FF:FF:F,,F::F:FFF,F,:,,,:FF:FFFFFFFFFFFF
+Let's check the quality of the data with FastQC before quality filtering:
 
-The last G's have a quality character F, which stands for a phred score of 37.
+    fastqc data/reads/sample_0.fq.gz
 
-Let's check the quality of the data with FastQC:
+!!! question Exercise
+    Open the FastqQC report `data/reads/sample_0_fastqc.html`
 
-    fastqc -t 16 sample_0.trim.fastq 
-
-Therefore it is good to use a trimming tool that can detect poly-g tails. Fastp can do that. We keep the defaults like they are, but specify we have interleaved input data. In case you have R1 and R2 file for each sample, you need to enable adapter detection with the `--detect_adapter_for_pe` flag. Execute fastp with this command:
+Because NovaSeq and NextSeq from Illumina contain often poly-g tails, it is good to use a trimming tool that can detect poly-g tails. Fastp can do that. We keep the defaults like they are, but specify we have interleaved input data. In case you have R1 and R2 file for each sample, you need to enable adapter detection with the `--detect_adapter_for_pe` flag. Execute fastp with this command:
 
     fastp -i data/reads/sample_0.fq.gz \
           --stdout \
           --interleaved_in \
-          -q 30 \
+          -q 25 \
+          --cut_front \
+          --cut_tail \
+          --cut_mean_quality 25 \
+          -l 51 \
           --thread 16 \
           --trim_poly_g > sample_0.trim.fastq
 
-??? done "Output"
-        Streaming uncompressed interleaved reads to STDOUT...
-        Enable interleaved output mode for paired-end input.
-
-        Read1 before filtering:
-        total reads: 3329784
-        total bases: 499467600
-        Q20 bases: 455452270(91.1876%)
-        Q30 bases: 421569914(84.4039%)
-
-        Read2 before filtering:
-        total reads: 3329784
-        total bases: 499467600
-        Q20 bases: 455447319(91.1866%)
-        Q30 bases: 421564098(84.4027%)
-
-        Read1 after filtering:
-        total reads: 3329784
-        total bases: 499450495
-        Q20 bases: 455437723(91.1878%)
-        Q30 bases: 421556912(84.4041%)
-
-        Read2 after filtering:
-        total reads: 3329784
-        total bases: 499450639
-        Q20 bases: 455432932(91.1868%)
-        Q30 bases: 421551217(84.403%)
-
-        Filtering result:
-        reads passed filter: 6659568
-        reads failed due to low quality: 0
-        reads failed due to too many N: 0
-        reads failed due to too short: 0
-        reads with adapter trimmed: 532
-        bases trimmed due to adapters: 32376
-
-        Duplication rate: 0.0368492%
-
-        Insert size peak (evaluated by paired-end reads): 38
-
-        JSON report: fastp.json
-        HTML report: fastp.html
-
-        fastp -i data/reads/sample_0.fq.gz --stdout --interleaved_in -q 30 --thread 16 --trim_poly_g 
-        fastp v0.23.2, time used: 26 seconds
-
+Now make a FastQC report again, to see the results of the quality filtering.
+    fastqc sample_0.trim.fastq
 
 !!! question "Exercise" 
     - Are there any adapter sequences detected?
@@ -110,22 +65,18 @@ Therefore it is good to use a trimming tool that can detect poly-g tails. Fastp 
 
 Alternative trimming with bbduk. Compare poly-g tail filtering, adapter trimming.
 
-    bbduk.sh in=data/sampleA_R1.fastq.gz \
-             in2=data/sampleA_R2.fastq.gz \
-             out=sampleA_R1.trim.bbduk.fastq.gz \
-             out2=sampleA_R2.trim.bbduk.fastq.gz \
-             trimpolygright=1 \
-             entropy=0.6 \
-             entropywindow=50 \
-             entropymask=f \
-             qtrim=rl \
-             trimq=15 \
-             minlength=51 \
-             ref=nextera.fa.gz \
-             ktrim=r \
-             stats=bbduk.stats \
-             t=4
+    bbduk.sh in=data/reads/sample_0.fq.gz  \
+        out=sample_0.trim.bbduk.fastq.gz \
+        interleaved=true \
+        trimpolygright=1 \
+        qtrim=w trimq=20 \
+        minlength=51 \
+        ref=nextera.fa.gz ktrim=r \
+        stats=bbduk.stats \
+        t=16
 
+!!! question Exercise
+    Create also an FastQC report for the trimming with bbduk 
 
 ### Remove PhiX sequences
 
