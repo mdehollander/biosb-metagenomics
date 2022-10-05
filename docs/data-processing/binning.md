@@ -44,3 +44,7 @@ Now, we will let checkm predict the taxonomy of the bins and evaluate their comp
     checkm lineage_wf -t 8 -x fa binned_genomes/ checkm_taxonomy/
 
 This command will take some time but it will give us a detailed breakdown of each genome predicted taxonomy and completeness.
+
+With the bam files, a coverage file can also be created with the tool CoverM
+
+    coverm contig -b data/precomputed/bam/sample_*.sorted.bam -m mean -t 16 -o coverage.tsv
