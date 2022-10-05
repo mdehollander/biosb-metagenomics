@@ -55,6 +55,7 @@ Because NovaSeq and NextSeq from Illumina contain often poly-g tails, it is good
           --trim_poly_g > sample_0.trim.fastq
 
 Now make a FastQC report again, to see the results of the quality filtering.
+
     fastqc sample_0.trim.fastq
 
 !!! question "Exercise" 
