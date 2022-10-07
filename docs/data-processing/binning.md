@@ -1,3 +1,6 @@
+!!! important "Learning objectives"
+    - Extract individual genomes from an assembly
+
 Next, we want to map the reads back on the assembly to see how the coverage for each contig changed across samples:
 
     bwa mem precomputed/assembly/final.contigs.fa \

@@ -1,4 +1,8 @@
-Now that our reads are quality trimmed and ready to go is time to start the assembly. We can use megahit:
+!!! important "Learning objectives"
+    - Being able to create an assembly with megahit
+    - Assess the quality of the assembly
+
+Now that our reads are quality trimmed and ready to go is time to start the assembly. We can use [megahit](https://github.com/voutcn/megahit):
 
     megahit -r reads/sample_0.fq.gz, \
                reads/sample_1.fq.gz, \
