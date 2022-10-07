@@ -19,6 +19,8 @@ nav:
     - Quality Control: data-processing/quality-control.md
     - Assembly: data-processing/assembly.md
     - Binning: data-processing/binning.md
+  - Functional annotation:
+    - Viromics: functional-annotation/viromes.md
 
 markdown_extensions:
   - footnotes
