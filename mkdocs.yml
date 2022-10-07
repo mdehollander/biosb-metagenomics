@@ -7,6 +7,7 @@ repo_name: biosb-metagenomics
 # Styling
 theme:
   name: material
+  custom_dir: docs/overrides
   features:
     - navigation.expand
 
@@ -18,8 +19,6 @@ nav:
     - Quality Control: data-processing/quality-control.md
     - Assembly: data-processing/assembly.md
     - Binning: data-processing/binning.md
-    - Taxonomic annotation: data-processing/taxonomic-annotation.md
-    - Functional-annotation: data-processing/functional-annotation.md
 
 markdown_extensions:
   - footnotes
