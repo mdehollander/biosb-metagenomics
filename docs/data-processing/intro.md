@@ -1,5 +1,5 @@
 ## Dataset explanation
 
 ## Slides
-[:fontawesome-solid-file-pdf: Download the presentation](../assets/pdf/introduction.pdf){: .md-button }
+[:fontawesome-solid-file-pdf: Download the presentation](../assets/from_zero_to_hero.pdf){: .md-button }
 
