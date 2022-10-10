@@ -4,14 +4,14 @@
 
 Now that our reads are quality trimmed and ready to go is time to start the assembly. We can use [megahit](https://github.com/voutcn/megahit):
 
-    megahit -r reads/sample_0.fq.gz, \
-               reads/sample_1.fq.gz, \
-               reads/sample_2.fq.gz, \
-               reads/sample_3.fq.gz, \
-               reads/sample_4.fq.gz, \
-               reads/sample_5.fq.gz \
+    megahit -r sample_0.nophix.fastq.gz, \
+               sample_1.nophix.fastq.gz, \
+               sample_2.nophix.fastq.gz, \
+               sample_3.nophix.fastq.gz, \
+               sample_4.nophix.fastq.gz, \
+               sample_5.nophix.fastq.gz \
             -t 16 \
-            -o megahit_assembly_meta/
+            -o megahit_assembly_meta \
             --presets meta-sensitive
 
 This command would take around 50 minutes to complete, to speed up things we pre-assembled the data which is available in the precomputed/assembly/ folder. 

@@ -130,9 +130,10 @@ Alternative trimming with bbduk. Compare poly-g tail filtering, adapter trimming
 
     Now do a QC for all samples. You can use a for loop for that. For example, fastp can be run like:
 
-        for file in data/reads/*.gz; do \
+        for file in /data/reads/*.gz; do \
             sample=$(basename ${file} .fq.gz);
             fastp -i $file --stdout --interleaved_in -q 25 --cut_front --cut_tail --cut_mean_quality 25 -l 51 --thread 16 --trim_poly_g > $sample.trim.fastq;
+            bbmap.sh ref=/data/databases/phix174_ill.ref.fa.gz in=$sample.trim.fastq interleaved=true outu=$sample.nophix.fastq.gz outm=$sample.phix.fastq.gz t=4;
         done
 
 ## Quickly check what is in this metagenome
