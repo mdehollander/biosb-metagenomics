@@ -6,7 +6,7 @@ We will follow the virus discovery and AMG detection tutorial from the [Sullivan
 
 First, we run VirSorter2 with a loose cutoff of 0.5 for maximal sensitivity. We are only interested in phages (dsDNA and ssDNA phage, this is also the default in Virsorter2). A minimal length 5000 bp is chosen since it is the minimum required by downstream viral classification. Note that the``--keep-original-seq`` option preserves the original sequence of circular and (near) fully viral contigs (score >0.8 as a whole sequence) and we are passing them to checkV to trim possible host genes left at ends and handle duplicate segments of circular contigs.
 
-**Note:** The following command takes about 2h. You can also continue with the results in ``/data/precomputed/virome/vs2-pass1/``
+**Note:** The following command takes about 2h. You can also continue with the results in ``/data/precomputed/virome/vs2-pass1/``.
 
     virsorter run --keep-original-seq \
       -i /data/precomputed/assembly/final.contigs.fa \
@@ -51,7 +51,7 @@ Next we parse the prodigal output and prepare it for vConTACT2
 
 Finally, we are ready to cluster our sequences with the viral RefSeq.
 
-**Note:** The following command takes about 2h. You can also continue with the results in ``/data/precomputed/virome/vcontact/``
+**Note:** The following command takes about 2h. You can also continue with the results in ``/data/precomputed/virome/vcontact/``.
 
     vcontact2 --raw-proteins checkv/combined-prot.faa --rel-mode 'Diamond' \
       --proteins-fp checkv/viral_genomes_g2g.csv \
@@ -74,7 +74,7 @@ The vConTACT2 output is described [here](https://bitbucket.org/MAVERICLab/vconta
 
 Then we run the checkV-trimmed sequences through VirSorter2 again to generate ``affi-contigs.tab`` files needed by DRAMv to identify AMGs. Note the``--seqname-suffix-off`` option preserves the original input sequence name since we are sure there is no chance of getting >1 proviruses from the same contig in this second pass, and the ``--viral-gene-enrich-off`` option turns off the requirement of having more viral genes than host genes to make sure that VirSorter2 is not doing any screening at this step.
 
-**Note:** The following command takes about 30 min. You can also continue with the results in ``/data/precomputed/virome/vs2-pass2/``
+**Note:** The following command takes about 30 min. You can also continue with the results in ``/data/precomputed/virome/vs2-pass2/``.
 
     virsorter run --seqname-suffix-off --viral-gene-enrich-off --provirus-off \
       --prep-for-dramv -i checkv/combined.fna -w vs2-pass2 --min-score 0.5 \
@@ -82,7 +82,7 @@ Then we run the checkV-trimmed sequences through VirSorter2 again to generate ``
 
 Then run DRAMv to annotate the identified sequences, which can be used for manual curation.
 
-**Note:** The DRAM databases are not correctly set up in the course environment, unfortunately. Thus, you will need to continue with the precomputed results in ``/data/precomputed/virome/dramv-annotate/`` and ``/data/precomputed/virome/dramv-distill/``
+**Note:** The following command takes about 10 min. You can run it or continue with the precomputed results in ``/data/precomputed/virome/dramv-annotate/``.
 
     DRAM-v.py annotate -i vs2-pass2/for-dramv/final-viral-combined-for-dramv.fa \
       -v vs2-pass2/for-dramv/viral-affi-contigs-for-dramv.tab -o dramv-annotate \
