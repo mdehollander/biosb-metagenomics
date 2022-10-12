@@ -21,6 +21,7 @@ nav:
     - Binning: data-processing/binning.md
   - "Day 3: Functional annotation":
     - Viromics: functional-annotation/viromes.md
+    - BGCs: functional-annotation/bgcs.md
 
 markdown_extensions:
   - footnotes
