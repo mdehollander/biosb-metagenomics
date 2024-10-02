@@ -1,25 +1,50 @@
 # Functional annotation - Viromics
 
-We will follow the virus discovery and AMG detection tutorial from the [Sullivan lab](https://www.protocols.io/view/viral-sequence-identification-sop-with-virsorter2-5qpvoyqebg4o/) with the data from this course. In addition, we will do taxonomic classification of the discovered viruses.
+We will now perform the identification of viral sequences from metagenomic data. In addition, we will assign the taxonomy and a potential bacterial host for each of the identified viruses.
+
+# Before starting
+
+This practical requires Linux OS with "conda" installed. If you do not have access to any Linux OS, you can use virtual machines such as VirtualBox or Vagrant in MacOS or Windows.
+
+Once "conda" is available, we need to install several different tools that will be required during the viral identification and annotation pipeline:
+    - geNomad
+    - CheckV
+    - iPHOP
 
 ## Step 1 - Initial virus discovery
 
-First, we run VirSorter2 with a loose cutoff of 0.5 for maximal sensitivity. We are only interested in phages (dsDNA and ssDNA phage, this is also the default in Virsorter2). A minimal length 5000 bp is chosen since it is the minimum required by downstream viral classification. Note that the``--keep-original-seq`` option preserves the original sequence of circular and (near) fully viral contigs (score >0.8 as a whole sequence) and we are passing them to checkV to trim possible host genes left at ends and handle duplicate segments of circular contigs.
+First, we run **geNomad** to identify viral sequences in our data. We use the ``--enable-score-calibration`` option to compute false discovery rates, allowing us to set a threshold to achieve a desired proportion of false positives (here we will use an FDR < 0.05). Further, we add the use the ``--cleanup`` flag to remove intermediate files and specify the number of threads using ``--cleanup``. As we are not using the ``--disable-find-proviruses`` option, geNomad will perform an initial prunning to remove potential contaminant host regions from proviral sequences. 
 
-**Note:** The following command takes about 2h. You can also continue with the results in ``/data/precomputed/virome/vs2-pass1/``.
+**Note:** The following command takes about Xh. You can also continue with the results in ``/data/precomputed/virome/vs2-pass1/``.
 
-    virsorter run --keep-original-seq \
-      -i /data/precomputed/assembly/final.contigs.fa \
-      -w vs2-pass1 --min-length 5000 -j 2 all
+      genomad end-to-end \
+          --enable-score-calibration \
+          --disable-find-proviruses \
+          X_metaspades_contigs.fa \
+          geNomad_results \
+          --cleanup \
+          --threads 4 \
+          /scratch/hb-llnext/databases/geNomad_db/
 
-You can find a description of the VirSorter2 output files [here](https://github.com/jiarong/VirSorter2#detailed-description-on-output-files). Look into ``vs2-pass1/final-viral-score.tsv``.
 
-??? done "How many phages of which viral group do you detect?"
-    1 ssDNA, 16 dsDNAphage
+You can find a description of the geNomad output files [here]([https://github.com/jiarong/VirSorter2#detailed-description-on-output-files]).
+
+**Quiz**: Look into ``geNomad_results/X_metaspades_contigs_virus_summary.tsv``. 
+
+??? done "1. What is the length of the largest viral genome that we have detected?"
+    X bases
+
+??? done "2. Regarding the viral taxonomy, which is the most common viral class among identified viruses?"
+    Caudoviricetes
+
+??? done "3. Do we identify any single-stranded DNA virus (ssDNA)?"
+    Yes, there is 1 ssDNA (X).     
+
+ **Note:** An useful resource where you can find all the information about the viral taxonomy is [here]([https://ictv.global/taxonomy]).    
 
 ## Step 2 - Run CheckV
 
-There could be some non-viral sequences or regions in the VirSorter2 results with a minimal score cutoff of 0.5. Here we use CheckV to quality control the VirSorter2 results and also to trim potential host regions left at the ends of proviruses. This command will take about 5 min to complete.
+While geNomad performs well at identifying proviruses from metagenomic data, CheckV is specifically designed to identify host-virus boundaries with high precision. Further, CheckV allows to estimate the completeness of the predicted viral genomes based on their comparison to a database of complete viral genomes. Therefore, here we use CheckV to quality control the geNomad results and also to trim potential host regions left at the ends of proviruses. This command will take about 5 min to complete.
 
     checkv end_to_end vs2-pass1/final-viral-combined.fa checkv \
       -t 2 -d /data/databases/checkv-db-v1.4
