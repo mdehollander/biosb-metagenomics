@@ -22,9 +22,9 @@ By the end of this exercise, your objective will be to:
 This practical requires Linux OS with "conda" installed. If you do not have access to any Linux OS, you can use virtual machines such as VirtualBox or Vagrant in MacOS or Windows.
 
 Once "conda" is available, we need to install several different tools that will be required during the viral identification and annotation pipeline:
-    - geNomad
-    - CheckV
-    - iPHOP
+- **geNomad**  
+- **CheckV**  
+- **iPHOP**
 
 ## Step 1 - Initial virus discovery
 
@@ -57,7 +57,7 @@ You can find a description of the geNomad output files [here](https://github.com
 
 **Note:** A useful resource where you can find all the information about the viral taxonomy is [here](https://ictv.global/taxonomy).  
 
-## Step 2 - Run CheckV
+## Step 2 - Host contamination removal and quality check
 
 While geNomad performs well at identifying proviruses from metagenomic data, CheckV is specifically designed to identify host-virus boundaries with high precision. Further, CheckV allows to estimate the completeness of the predicted viral genomes based on their comparison to a database of complete viral genomes. Therefore, here we use CheckV to quality control the geNomad results and also to trim potential host regions left at the ends of proviruses. This command will take about 5 min to complete.
 
