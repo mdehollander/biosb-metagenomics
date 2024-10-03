@@ -1,6 +1,21 @@
 # Functional annotation - Viromics
 
-We will now perform the identification of viral sequences from metagenomic data. In addition, we will assign the taxonomy and a potential bacterial host for each of the identified viruses.
+We will now identify viral sequences from metagenomic data. You will be provided with a set of contigs assembled from infant fecal metagenomic samples. Our goals are to:
+
+1. Determine the **viral origin** of the contigs.
+2. Assign **taxonomy** to the identified viruses.
+3. Estimate the **completeness** of viral genomes.
+4. Predict the potential **bacterial host**.
+5. Functionally **annotate** each identified virus.
+
+
+By the end of this exercise, your objective will be to:
+
+> Identify the bacteriophage that satisfies all of the following criteria:
+> - Belongs to the **_Caudoviricetes_** class  
+> - Is predicted to have a **complete genome**
+> - Is predicted to infect the **_Bacterioides_** genus
+> - Has the ability to **integrate** into the bacterial genome
 
 # Before starting
 
@@ -15,7 +30,7 @@ Once "conda" is available, we need to install several different tools that will 
 
 First, we run **geNomad** to identify viral sequences in our data. We use the ``--enable-score-calibration`` option to compute false discovery rates, allowing us to set a threshold to achieve a desired proportion of false positives (here we will use an FDR < 0.05). Further, we add the use the ``--cleanup`` flag to remove intermediate files and specify the number of threads using ``--cleanup``. As we are not using the ``--disable-find-proviruses`` option, geNomad will perform an initial prunning to remove potential contaminant host regions from proviral sequences. 
 
-**Note:** The following command takes about Xh. You can also continue with the results in ``/data/precomputed/virome/vs2-pass1/``.
+**Note:** The following command takes about Xh. You can also continue with the results in ``/data/precomputed/virome/genomad_viral_id/``.
 
       genomad end-to-end \
           --enable-score-calibration \
@@ -24,14 +39,14 @@ First, we run **geNomad** to identify viral sequences in our data. We use the ``
           geNomad_results \
           --cleanup \
           --threads 4 \
-          /scratch/hb-llnext/databases/geNomad_db/
+          /data/databases/geNomad_db/
 
 
-You can find a description of the geNomad output files [here]([https://github.com/jiarong/VirSorter2#detailed-description-on-output-files]).
+You can find a description of the geNomad output files [here](https://github.com/jiarong/VirSorter2#detailed-description-on-output-files).
 
 **Quiz**: Look into ``geNomad_results/X_metaspades_contigs_virus_summary.tsv``. 
 
-??? done "1. What is the length of the largest viral genome that we have detected?"
+??? done "1. What is the length of the largest viral genome that we have identified?"
     X bases
 
 ??? done "2. Regarding the viral taxonomy, which is the most common viral class among identified viruses?"
@@ -40,16 +55,21 @@ You can find a description of the geNomad output files [here]([https://github.co
 ??? done "3. Do we identify any single-stranded DNA virus (ssDNA)?"
     Yes, there is 1 ssDNA (X).     
 
- **Note:** An useful resource where you can find all the information about the viral taxonomy is [here]([https://ictv.global/taxonomy]).    
+**Note:** A useful resource where you can find all the information about the viral taxonomy is [here](https://ictv.global/taxonomy).  
 
 ## Step 2 - Run CheckV
 
 While geNomad performs well at identifying proviruses from metagenomic data, CheckV is specifically designed to identify host-virus boundaries with high precision. Further, CheckV allows to estimate the completeness of the predicted viral genomes based on their comparison to a database of complete viral genomes. Therefore, here we use CheckV to quality control the geNomad results and also to trim potential host regions left at the ends of proviruses. This command will take about 5 min to complete.
 
-    checkv end_to_end vs2-pass1/final-viral-combined.fa checkv \
-      -t 2 -d /data/databases/checkv-db-v1.4
+      checkv \
+          end_to_end \
+	      X_viruses.fa \
+	      CheckV_results \
+	      -t 4 \
+	      -d /data/databases/checkv-db-v1.5
 
-The CheckV output is described [here](https://bitbucket.org/berkeleylab/checkv/src/master/). Look into ``checkv/quality_summary.tsv``.
+
+The CheckV output is described [here](https://bitbucket.org/berkeleylab/checkv/src/master/). Look into ``CheckV_results/quality_summary.tsv``.
 
 ??? done "How many proviruses do you find and how many viruses?"
     4 proviruses, 13 viruses
@@ -57,71 +77,64 @@ The CheckV output is described [here](https://bitbucket.org/berkeleylab/checkv/s
 ??? done "How many low, medium, and high quality viruses do you detect? How many of the viruses have direct terminal repeats?"
     5 low,  3 medium, 7 high quality, of them 3 have DTR
 
-We will work with both the detected viruses and proviruses, so we combine them:
+**Note:** CheckV provides 2 separate files with the identified proviral and viral sequences. As we want to work with both of them, we combine them into a single file: 
 
-    cat checkv/proviruses.fna checkv/viruses.fna > checkv/combined.fna
-
-## Step 3 - Taxonomic classification
-
-We use vConTACT2 for taxonomic classification. This is done on the protein level and we first need to detect ORFs. This is done with prodigal:
-
-    prodigal -p meta -a checkv/combined-prot.faa \
-      -i checkv/combined.fna -f gff -o checkv/combined-prot.gff
+    cat CheckV_results/proviruses.fna CheckV_results/viruses.fna > CheckV_results/combined.fna
 
 
-Next we parse the prodigal output and prepare it for vConTACT2
+## Step 3 - Bacterial host assignment
 
-    vcontact2_gene2genome -p checkv/combined-prot.faa \
-      -o checkv/viral_genomes_g2g.csv -s 'Prodigal-FAA'
+We will use **iPHoP** for bacterial host assignment of the viruses. Although iPHoP provides both genus- and species-level host predictions, we will focus solely on genus-level assignments. This is because iPHoP offers high-confidence predictions at the genus level (with an estimated false discovery rate of less than 10%), while the confidence decreases at the species level.
 
-Finally, we are ready to cluster our sequences with the viral RefSeq.
+The following command takes about Xh. You can also continue with the results in ``/data/precomputed/virome/iphop/``.
 
-**Note:** The following command takes about 2h. You can also continue with the results in ``/data/precomputed/virome/vcontact/``.
+    iphop predict \
+        --fa_file my_input_phages.fasta \
+        --db_dir /data/databases/Sept_2021_pub/ \
+        --out_dir IPHoP_results/
+        --num_threads 4
 
-    vcontact2 --raw-proteins checkv/combined-prot.faa --rel-mode 'Diamond' \
-      --proteins-fp checkv/viral_genomes_g2g.csv \
-      --db 'ProkaryoticViralRefSeq94-Merged' --pcs-mode MCL \
-      --vcs-mode ClusterONE --c1-bin /opt/conda/bin/clusterone \
-      --threads 2 --output-dir vcontact
+**Note:** iPHoP allows to enrich the default database with custom MAGs to improve the host assignment of the viruses.
 
-The vConTACT2 output is described [here](https://bitbucket.org/MAVERICLab/vcontact2/wiki/Home). You can load the file ``genome_by_genome_overview.csv`` in a spreadsheet program and check which one of the contigs are clustered (they are in the end of the file). Alternatively, you can check which of the clusters in ``viral_cluster_overview.csv`` contain contigs:
+The iPHoP output is described [here](https://bitbucket.org/MAVERICLab/vcontact2/wiki/Home](https://bitbucket.org/srouxjgi/iphop/src/main/#markdown-header-main-output-files)). 
 
-    grep k141 viral_cluster_overview.csv
+Look into ``Host_prediction_to_genus_m90.csv``. By default, all virus-host pairs for which the confidence score is higher than the selected cutoff (default = 90) are included. For this exercise, consider only the top hit for each virus (prediction with highest confidence score):
 
-??? done "Which of the contigs are clustered with phages from RefSeq? What can you say about the taxonomy and host range of the clusters?"
-    k141_124 - belongs to cluster VC_105 that has been split in 2 subclusters, the other subcluster contains Bacillus phages of the Myoviridae family  
-    k141_1485 - clusters with Bacillus phages of the Siphoviridae family  
-    k141_1484 - clusters with Escherichia phages of the Microviridae family  
-    k141_1004 - clusters with Stenotrophomonas phages of the Inoviridae family  
-    k141_292 - clusters with Sphingobium phages of the Siphoviridae family
+??? done "Is there any virus predicted to infect Bacteroides genus?"
 
-## Step 4 - AMG detection
+??? done "Considering the genome completeness estimated in the previous step, which of these Bacteroides phages is predicted to have a complete genome?"
 
-Then we run the checkV-trimmed sequences through VirSorter2 again to generate ``affi-contigs.tab`` files needed by DRAMv to identify AMGs. Note the``--seqname-suffix-off`` option preserves the original input sequence name since we are sure there is no chance of getting >1 proviruses from the same contig in this second pass, and the ``--viral-gene-enrich-off`` option turns off the requirement of having more viral genes than host genes to make sure that VirSorter2 is not doing any screening at this step.
 
-**Note:** The following command takes about 30 min. You can also continue with the results in ``/data/precomputed/virome/vs2-pass2/``.
+## Step 4 - Functional annotation
 
-    virsorter run --seqname-suffix-off --viral-gene-enrich-off --provirus-off \
-      --prep-for-dramv -i checkv/combined.fna -w vs2-pass2 --min-score 0.5 \
-      -j 2 all
+Multiple tools can be used for the functional annotation of viral genomes. Here, we will use geNomad (annotate module) to retrieve the annotations for each of the proteins in our predicted viral genomes.
 
-Then run DRAMv to annotate the identified sequences, which can be used for manual curation.
+The following command takes about 10 min. You can also continue with the results in ``/data/precomputed/virome/genomad_annotation/``.
 
-**Note:** The following command takes about 10 min. You can run it or continue with the precomputed results in ``/data/precomputed/virome/dramv-annotate/``.
+    genomad annotate \
+          viral_contigs.fa \
+          geNomad_annotation_results \
+          /data/databases/geNomad_db/
 
-    DRAM-v.py annotate -i vs2-pass2/for-dramv/final-viral-combined-for-dramv.fa \
-      -v vs2-pass2/for-dramv/viral-affi-contigs-for-dramv.tab -o dramv-annotate \
-      --skip_trnascan --threads 2 --min_contig_size 5000
+The detailed explanation of this step can be found [here](https://portal.nersc.gov/genomad/pipeline.html#annotate). Check now the ``X_virus_genes.tsv`` file:
 
-Finally, we use ``distill`` to summarize the annotations.
+??? done "Does any of the identified viruses use an alternative genetic code?"
+    We find 2 viruses ....
 
-    DRAM-v.py distill -i dramv-annotate/annotations.tsv -o dramv-distill
+??? done "Are any of the identified viruses encoding proteins that enable integration into the bacterial genome?"
+    Yes, X ....    
 
-The summarized output can be found in ``dramv-distill/amg_summary.tsv``.
+**Note:** Genetic code 11 (translation table 11) is the standard code used for Bacteria, Archaea, prokaryotic viruses and chloroplast proteins.
 
-??? done "Which contigs contain AMG and of which function? Which potential hosts have been identfied for them with the vConTACT2 analysis?"
-    We find 2 contigs that contain a dUTP pyrophosphatase: k141_124 (potential Bacillus phage) and k141_1483 (unclustered)
 
-To get an overview of all AMGs detected in the data, you can check ``dram-annotate/annotations.tsv``. The AMG flags (last column) are explained in the [DRAM publication](https://academic.oup.com/nar/article/48/16/8883/5884738).
+??? done  
+> Which bacteriophage are we looking for?
+> 
 
-You can also look into the original [protocol](https://www.protocols.io/view/viral-sequence-identification-sop-with-virsorter2-5qpvoyqebg4o/) for considerations on manual curation.
+## Extra Step - Viral genome visualization
+
+
+
+
+
+
