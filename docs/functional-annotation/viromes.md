@@ -17,18 +17,17 @@ By the end of this exercise, your objective will be to:
 > - Is predicted to infect the **_Bacterioides_** genus
 > - Has the ability to **integrate** into the bacterial genome
 
-# Before starting
-
-This practical requires Linux OS with "conda" installed. If you do not have access to any Linux OS, you can use virtual machines such as VirtualBox or Vagrant in MacOS or Windows.
-
-Once "conda" is available, we need to install several different tools that will be required during the viral identification and annotation pipeline:
+**Note:** For this practical several tools are required the viral identification and annotation pipeline:
 - **geNomad**  
 - **CheckV**  
 - **iPHOP**
 
+All these tools and the necessary databases have been preinstalled and are ready for you to use them.
+
+
 ## Step 1 - Initial virus discovery
 
-First, we run **geNomad** to identify viral sequences in our data. We use the ``--enable-score-calibration`` option to compute false discovery rates, allowing us to set a threshold to achieve a desired proportion of false positives (here we will use an FDR < 0.05). Further, we add the use the ``--cleanup`` flag to remove intermediate files and specify the number of threads using ``--cleanup``. As we are not using the ``--disable-find-proviruses`` option, geNomad will perform an initial prunning to remove potential contaminant host regions from proviral sequences. 
+First, we run **geNomad** to identify viral sequences in our data. We use the ``--enable-score-calibration`` option to compute false discovery rates, allowing us to set a threshold to achieve a desired proportion of false positives (here we will use an FDR < 0.05). Further, we add the use the ``--cleanup`` flag to remove intermediate files and the ``--disable-find-proviruses`` option to avoid geNomad performing an initial prunning to remove potential contaminant host regions from proviral sequences (we will do this in the next step with CheckV). 
 
 **Note:** The following command takes about Xh. You can also continue with the results in ``/data/precomputed/virome/genomad_viral_id/``.
 
@@ -38,7 +37,6 @@ First, we run **geNomad** to identify viral sequences in our data. We use the ``
           X_metaspades_contigs.fa \
           geNomad_results \
           --cleanup \
-          --threads 4 \
           /data/databases/geNomad_db/
 
 
