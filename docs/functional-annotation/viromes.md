@@ -64,9 +64,8 @@ While geNomad performs well at identifying proviruses from metagenomic data, Che
 
       checkv \
           end_to_end \
-	      X_viruses.fa \
+	     geNomad_results/viral_contigs_summary/viral_contigs_virus.fna \
 	      CheckV_results \
-	      -t 4 \
 	      -d /data/databases/checkv-db-v1.5
 
 
