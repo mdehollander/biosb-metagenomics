@@ -34,7 +34,7 @@ First, we run **geNomad** to identify viral sequences in our data. We use the ``
       genomad end-to-end \
           --enable-score-calibration \
           --disable-find-proviruses \
-          X_metaspades_contigs.fa \
+          contigs.fa \
           geNomad_results \
           --cleanup \
           /data/databases/geNomad_db/
