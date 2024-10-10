@@ -44,14 +44,17 @@ You can find a description of the geNomad output files [here](https://github.com
 
 **Quiz**: Look into ``geNomad_results/viral_contigs_summary/viral_contigs_virus_summary.tsv``. 
 
-??? done "1. What is the length of the largest viral genome that we have identified?"
-    X bases
+??? done "1. How many of the 100 intiial contigs are identified as viral?"
+    57 contigs.
+    
+??? done "2. What is the length of the largest viral genome that we have identified?"
+    297,029 bases (MGV_98132).
 
-??? done "2. Regarding the viral taxonomy, which is the most common viral class among identified viruses?"
-    Caudoviricetes
+??? done "3. Regarding the viral taxonomy, which is the most common viral class among identified viruses?"
+    Caudoviricetes.
 
-??? done "3. Do we identify any single-stranded DNA virus (ssDNA)?"
-    Yes, there is 1 ssDNA (X).     
+??? done "4. Do we identify any single-stranded DNA virus (ssDNA)?"
+    Yes, there are 12 ssDNA (belonging to Monodnaviria realm).     
 
 **Note:** A useful resource where you can find all the information about the viral taxonomy is [here](https://ictv.global/taxonomy).  
 
