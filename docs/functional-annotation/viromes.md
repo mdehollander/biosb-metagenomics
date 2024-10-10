@@ -42,7 +42,7 @@ First, we run **geNomad** to identify viral sequences in our data. We use the ``
 
 You can find a description of the geNomad output files [here](https://github.com/jiarong/VirSorter2#detailed-description-on-output-files).
 
-**Quiz**: Look into ``geNomad_results/X_metaspades_contigs_virus_summary.tsv``. 
+**Quiz**: Look into ``geNomad_results/viral_contigs_summary/viral_contigs_virus_summary.tsv``. 
 
 ??? done "1. What is the length of the largest viral genome that we have identified?"
     X bases
