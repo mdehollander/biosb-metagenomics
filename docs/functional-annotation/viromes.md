@@ -41,7 +41,7 @@ genomad end-to-end \
 
 You can find a description of the geNomad output files [here](https://github.com/jiarong/VirSorter2#detailed-description-on-output-files).
 
-Look into ``geNomad_results/viral_contigs_summary/viral_contigs_virus_summary.tsv``. 
+Look into ``geNomad_results/contigs_summary/contigs_virus_summary.tsv``. 
 
 ??? done "1. How many of the 100 initial contigs are identified as viral?"
     55 contigs.
