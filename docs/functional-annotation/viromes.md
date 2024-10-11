@@ -17,10 +17,10 @@ By the end of this exercise, your objective will be to:
 > - Is predicted to infect the *Clostridium* genus  
 > - Has the ability to **integrate** into the bacterial genome  
 
-**Note:** For this practical, several tools are required for the viral identification and annotation pipeline:
-- **geNomad**
-- **CheckV**
-- **iPHOP**
+**Note:** For this practical, several tools are required for the viral identification and annotation pipeline:  
+> - **geNomad**  
+> - **CheckV**  
+> - **iPHOP**  
 
 All these tools and the necessary databases have been preinstalled and are ready for you to use.
 
