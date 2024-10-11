@@ -28,7 +28,7 @@ All these tools and the necessary databases have been preinstalled and are ready
 
 First, we will run **geNomad** to identify viral sequences in our dataset. We will utilize the ``--enable-score-calibration`` option to compute false discovery rates (FDR). For this practical exercise, no specific FDR thresholds will be applied. Further, we will add the ``--cleanup`` flag to remove intermediate files and the ``--disable-find-proviruses`` option to avoid geNomad performing an initial prunning to remove potential contaminant host regions from proviral sequences (we will do this in the next step with CheckV). 
 
-**Note:** The following command takes about 10 minutes. You can also continue with the results in ``/data/precomputed/virome/genomad_results/``.
+**Note:** The following command takes about 2 minutes. You can also continue with the results in ``/data/precomputed/virome/genomad_results/``.
 ```bash
 genomad end-to-end \
     --enable-score-calibration \
