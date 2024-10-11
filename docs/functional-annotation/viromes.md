@@ -107,10 +107,10 @@ The iPHoP output is described [here](https://bitbucket.org/MAVERICLab/vcontact2/
 
 Look into ``iphop_results/Host_prediction_to_genus_m90.csv``. By default, all virus-host pairs for which the confidence score is higher than the selected cutoff (default = 90) are included. For this exercise, consider only the top hit for each virus (prediction with highest confidence score):
 
- ??? done "1. "Is there any virus predicted to infect the **_Clostridium_** genus?"
+??? done "1. "Is there any virus predicted to infect the **_Clostridium_** genus?"
     Yes, 2 viruses are predicted to infect **_Clostridium_**.
 
- ??? done "2. "Considering the genome completeness estimated in the previous step, which of these **_Clostridium_** phages is predicted to have a complete genome?"
+??? done "2. "Considering the genome completeness estimated in the previous step, which of these **_Clostridium_** phages is predicted to have a complete genome?"
     Both phages have a complete genome (with DTRs).
     
 
