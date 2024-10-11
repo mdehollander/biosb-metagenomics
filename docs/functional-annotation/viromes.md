@@ -2,11 +2,10 @@
 
 We will now identify viral sequences from metagenomic data. You will be provided with a set of contigs assembled from infant fecal metagenomic samples. Our goals are to:
 
-1. Determine the **viral origin** of the contigs.
-2. Assign **taxonomy** to the identified viruses.
-3. Estimate the **completeness** of viral genomes.
-4. Predict the potential **bacterial host**.
-5. Functionally **annotate** each identified virus.
+1. Determine the **viral origin** of the contigs (and assign their taxonomy).
+2. Estimate the **completeness** of viral genomes.
+3. Predict the potential **bacterial host**.
+4. Functionally **annotate** each identified virus.
 
 
 By the end of this exercise, your objective will be to identify the bacteriophage that satisfies all of the following criteria:  
