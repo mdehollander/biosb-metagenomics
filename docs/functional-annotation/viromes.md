@@ -92,14 +92,14 @@ The CheckV output is described [here](https://bitbucket.org/berkeleylab/checkv/s
 We will use **iPHoP** for bacterial host assignment of the viruses. Although iPHoP provides both genus- and species-level host predictions, we will focus solely on genus-level assignments. This is because iPHoP offers high-confidence predictions at the genus level (with an estimated false discovery rate of less than 10%), while the confidence decreases at the species level.
 
 **Note:** The following command takes about 1 hour. Therefore, you should continue with the results in ``/data/precomputed/virome/iphop_results/``.
+```bash
+mkdir iphop_results
 
-    	mkdir iphop_results
-    
-    	iphop predict \
-            --fa_file CheckV_results/combined.fna \
-            --db_dir /data/databases/Sept_2021_pub/ \
-	    --num_threads 8 \
-            --out_dir iphop_results
+iphop predict \
+    --fa_file CheckV_results/combined.fna \
+    --db_dir /data/databases/Sept_2021_pub/ \
+    --num_threads 8 \
+    --out_dir iphop_results
 
 The iPHoP output is described [here](https://bitbucket.org/MAVERICLab/vcontact2/wiki/Home](https://bitbucket.org/srouxjgi/iphop/src/main/#markdown-header-main-output-files)). 
 
