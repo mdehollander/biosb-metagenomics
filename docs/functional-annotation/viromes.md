@@ -118,7 +118,7 @@ Look into ``iphop_results/Host_prediction_to_genus_m90.csv``. By default, all vi
 
 Multiple tools can be used for the functional annotation of viral genomes. Here, we will use **geNomad** (annotate module) to retrieve the annotations for each of the proteins in our predicted viral genomes.
 
-**Note:** The following command takes about 10 minutes. You can also continue with the results in ``/data/precomputed/virome/genomad_annotation_results/``.
+**Note:** The following command takes about 2 minutes. You can also continue with the results in ``/data/precomputed/virome/genomad_annotation_results/``.
 ```bash
 genomad annotate \
     CheckV_results/combined.fna \
