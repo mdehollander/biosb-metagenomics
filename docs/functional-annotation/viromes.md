@@ -64,11 +64,11 @@ While geNomad performs well at identifying proviruses from metagenomic data, **C
 
 **Note:** This command will take about 10 minutes to complete. Again, you can continue with the results in ``/data/precomputed/virome/checkv_results/``.
 
-    checkv \
-        end_to_end \
-        geNomad_results/viral_contigs_summary/viral_contigs_virus.fna \
-        CheckV_results \
-        -d /data/databases/checkv-db-v1.5
+	checkv \
+            end_to_end \
+            geNomad_results/viral_contigs_summary/viral_contigs_virus.fna \
+            CheckV_results \
+            -d /data/databases/checkv-db-v1.5
 
 
 The CheckV output is described [here](https://bitbucket.org/berkeleylab/checkv/src/master/). Look into ``CheckV_results/quality_summary.tsv``.
@@ -93,13 +93,13 @@ We will use **iPHoP** for bacterial host assignment of the viruses. Although iPH
 
 **Note:** The following command takes about 1 hour. Therefore, you should continue with the results in ``/data/precomputed/virome/iphop_results/``.
 
-    mkdir iphop_results
+    	mkdir iphop_results
     
-    iphop predict \
-        --fa_file CheckV_results/combined.fna \
-        --db_dir /data/databases/Sept_2021_pub/ \
-	--num_threads 8 \
-        --out_dir iphop_results
+    	iphop predict \
+            --fa_file CheckV_results/combined.fna \
+            --db_dir /data/databases/Sept_2021_pub/ \
+	    --num_threads 8 \
+            --out_dir iphop_results
 
 The iPHoP output is described [here](https://bitbucket.org/MAVERICLab/vcontact2/wiki/Home](https://bitbucket.org/srouxjgi/iphop/src/main/#markdown-header-main-output-files)). 
 
@@ -120,11 +120,11 @@ Multiple tools can be used for the functional annotation of viral genomes. Here,
 
 **Note:** The following command takes about 10 minutes. You can also continue with the results in ``/data/precomputed/virome/genomad_annotation_results/``.
 
-    genomad annotate \
-          CheckV_results/combined.fna \
-          geNomad_annotation_results \
-	  --cleanup \
-          /data/databases/geNomad_db/
+	genomad annotate \
+            CheckV_results/combined.fna \
+	    geNomad_annotation_results \
+	    --cleanup \
+	    /data/databases/geNomad_db/
 
 The detailed explanation of this step can be found [here](https://portal.nersc.gov/genomad/pipeline.html#annotate). Check now the ``geNomad_annotation_results/combined_annotate/combined_genes.tsv`` file:
 
@@ -137,7 +137,7 @@ The detailed explanation of this step can be found [here](https://portal.nersc.g
 **Note:** Genetic code 11 (translation table 11) is the standard code used for Bacteria, Archaea, prokaryotic viruses and chloroplast proteins.
 
 
-??? done "Which bacteriophage are we looking for?"
+??? done "1. Which bacteriophage are we looking for?"
 > CS_2284: A predicted complete *Clostridium* phage, belonging to the *Caudoviricetes* class, that can integrate into the host genome.
 
 
