@@ -10,9 +10,9 @@ We will now identify viral sequences from metagenomic data. You will be provided
 
 
 By the end of this exercise, your objective will be to identify the bacteriophage that satisfies all of the following criteria:  
-> - Belongs to the **Caudoviricetes** class  
+> - Belongs to the ***Caudoviricetes*** class  
 > - Is predicted to have a **complete genome**  
-> - Is predicted to infect the **Clostridium** genus  
+> - Is predicted to infect the ***Clostridium*** genus  
 > - Has the ability to **integrate** into the bacterial genome  
   
 
