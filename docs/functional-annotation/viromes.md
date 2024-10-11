@@ -133,7 +133,7 @@ The detailed explanation of this step can be found [here](https://portal.nersc.g
     No, all the viruses use the standard genetic code (translation table 11).
 
 ??? done "2. Are any of the identified viruses encoding proteins that enable integration into the bacterial genome (integrases)?"
-    Yes, at least 7 viruses encode integrases (GPD_74496, GPD_79092, ELGV_14024, CS_100, CS_659, CS_1726 and CS_2284)  
+    Yes, at least 6 viruses encode integrases (GPD_79092, ELGV_14024, CS_100, CS_659, CS_1726 and CS_2284)  
 
 **Note:** Genetic code 11 (translation table 11) is the standard code used for Bacteria, Archaea, prokaryotic viruses and chloroplast proteins.
 
