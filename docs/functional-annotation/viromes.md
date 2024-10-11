@@ -73,10 +73,10 @@ While geNomad performs well at identifying proviruses from metagenomic data, **C
 
 The CheckV output is described [here](https://bitbucket.org/berkeleylab/checkv/src/master/). Look into ``CheckV_results/quality_summary.tsv``.
 
-??? done "1. "How many proviruses do you find and how many viruses?"
+??? done "1. How many proviruses do you find and how many viruses?"
     9 proviruses, 46 viruses.
 
-??? done "2. "How many low, medium, and high quality viruses do you detect? How many complete viruses? How many of them have direct terminal repeats?"
+??? done "2. How many low, medium, and high quality viruses do you detect? How many complete viruses? How many of them have direct terminal repeats?"
     15 viruses with low-quality, 16 with medium-quality and 9 with high-quality.
     15 viruses are complete. From them, 10 have direct terminal repeats (DTRs).
 
@@ -107,10 +107,10 @@ The iPHoP output is described [here](https://bitbucket.org/MAVERICLab/vcontact2/
 
 Look into ``iphop_results/Host_prediction_to_genus_m90.csv``. By default, all virus-host pairs for which the confidence score is higher than the selected cutoff (default = 90) are included. For this exercise, consider only the top hit for each virus (prediction with highest confidence score):
 
-??? done "1. "Is there any virus predicted to infect the **_Clostridium_** genus?"
+??? done "1. Is there any virus predicted to infect the **_Clostridium_** genus?"
     Yes, 2 viruses are predicted to infect **_Clostridium_**.
 
-??? done "2. "Considering the genome completeness estimated in the previous step, which of these **_Clostridium_** phages is predicted to have a complete genome?"
+??? done "2. Considering the genome completeness estimated in the previous step, which of these **_Clostridium_** phages is predicted to have a complete genome?"
     Both phages have a complete genome (with DTRs).
     
 
@@ -128,16 +128,16 @@ Multiple tools can be used for the functional annotation of viral genomes. Here,
 
 The detailed explanation of this step can be found [here](https://portal.nersc.gov/genomad/pipeline.html#annotate). Check now the ``geNomad_annotation_results/combined_annotate/combined_genes.tsv`` file:
 
-??? done "1. "Does any of the identified viruses use an alternative genetic code?"
+??? done "1. Does any of the identified viruses use an alternative genetic code?"
     No, all the viruses use the standard genetic code (translation table 11).
 
-??? done "2. "Are any of the identified viruses encoding proteins that enable integration into the bacterial genome (integrases)?"
+??? done "2. Are any of the identified viruses encoding proteins that enable integration into the bacterial genome (integrases)?"
     Yes, at least 7 viruses encode integrases (GPD_74496, GPD_79092, ELGV_14024, CS_100, CS_659, CS_1726 and CS_2284)  
 
 **Note:** Genetic code 11 (translation table 11) is the standard code used for Bacteria, Archaea, prokaryotic viruses and chloroplast proteins.
 
 
-??? done " "Which bacteriophage are we looking for?"
+??? done "Which bacteriophage are we looking for?"
 > CS_2284: A predicted complete *Clostridium* phage, belonging to the *Caudoviricetes* class, that can integrate into the host genome.
 
 
