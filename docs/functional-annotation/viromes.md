@@ -1,6 +1,6 @@
 # Functional annotation - Viromics
 
-We will now identify viral sequences from metagenomic data. You will be provided with a set of contigs assembled from infant fecal metagenomic samples. Our goals are to:
+We will now identify viral sequences from metagenomic data. You will be provided with a set of contigs assembled from infant fecal metagenomic samples. Our goals are to
 
 1. Determine the **viral origin** of the contigs (and assign their taxonomy).
 2. Estimate the **completeness** of viral genomes.
