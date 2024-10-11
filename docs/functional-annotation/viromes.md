@@ -29,7 +29,7 @@ All these tools and the necessary databases have been preinstalled and are ready
 
 First, we run **geNomad** to identify viral sequences in our data. We use the ``--enable-score-calibration`` option to compute false discovery rates, allowing us to set a threshold to achieve a desired proportion of false positives (here we will use an FDR < 0.05). Further, we add the use the ``--cleanup`` flag to remove intermediate files and the ``--disable-find-proviruses`` option to avoid geNomad performing an initial prunning to remove potential contaminant host regions from proviral sequences (we will do this in the next step with CheckV). 
 
-**Note:** The following command takes about 5 minutes. You can also continue with the results in ``/data/precomputed/virome/genomad_viral_id/``.
+**Note:** The following command takes about 5 minutes. You can also continue with the results in ``/data/precomputed/virome/genomad_results/``.
 
       genomad end-to-end \
           --enable-score-calibration \
@@ -44,8 +44,8 @@ You can find a description of the geNomad output files [here](https://github.com
 
 **Quiz**: Look into ``geNomad_results/viral_contigs_summary/viral_contigs_virus_summary.tsv``. 
 
-??? done "1. How many of the 100 intiial contigs are identified as viral?"
-    57 contigs.
+??? done "1. How many of the 100 initial contigs are identified as viral?"
+    55 contigs.
     
 ??? done "2. What is the length of the largest viral genome that we have identified?"
     297,029 bases (MGV_98132).
@@ -60,7 +60,7 @@ You can find a description of the geNomad output files [here](https://github.com
 
 ## Step 2 - Host contamination removal and quality check
 
-While geNomad performs well at identifying proviruses from metagenomic data, CheckV is specifically designed to identify host-virus boundaries with high precision. Further, CheckV allows to estimate the completeness of the predicted viral genomes based on their comparison to a database of complete viral genomes. Therefore, here we use CheckV to quality control the geNomad results and also to trim potential host regions left at the ends of proviruses. This command will take about 5 minutes to complete.
+While geNomad performs well at identifying proviruses from metagenomic data, CheckV is specifically designed to identify host-virus boundaries with high precision. Further, CheckV allows to estimate the completeness of the predicted viral genomes based on their comparison to a database of complete viral genomes. Therefore, here we use CheckV to quality control the geNomad results and also to trim potential host regions left at the ends of proviruses. This command will take about 10 minutes to complete. Again, you can continue with the results in ``/data/precomputed/virome/checkv_results/``.
 
 	checkv \
             end_to_end \
@@ -71,11 +71,14 @@ While geNomad performs well at identifying proviruses from metagenomic data, Che
 
 The CheckV output is described [here](https://bitbucket.org/berkeleylab/checkv/src/master/). Look into ``CheckV_results/quality_summary.tsv``.
 
-??? done "How many proviruses do you find and how many viruses?"
-    4 proviruses, 13 viruses
+??? done "1. "How many proviruses do you find and how many viruses?"
+    9 proviruses, 46 viruses
 
-??? done "How many low, medium, and high quality viruses do you detect? How many of the viruses have direct terminal repeats?"
-    5 low,  3 medium, 7 high quality, of them 3 have DTR
+??? done "2. "How many low, medium, and high quality viruses do you detect? How many complete viruses? How many of them have direct terminal repeats?"
+    15 viruses with low-quality, 16 with medium-quality and 9 with high-quality.
+    15 viruses are complete. From them, 10 have direct terminal repeats (DTRs).
+
+**Note:** Depending on the project's goals, it may be advisable to select only viruses predicted to be of at least medium quality. However, for this exercise, we will proceed with all available sequences.
 
 **Note:** CheckV provides 2 separate files with the identified proviral and viral sequences. As we want to work with both of them, we combine them into a single file: 
 
@@ -86,34 +89,36 @@ The CheckV output is described [here](https://bitbucket.org/berkeleylab/checkv/s
 
 We will use **iPHoP** for bacterial host assignment of the viruses. Although iPHoP provides both genus- and species-level host predictions, we will focus solely on genus-level assignments. This is because iPHoP offers high-confidence predictions at the genus level (with an estimated false discovery rate of less than 10%), while the confidence decreases at the species level.
 
-The following command takes about Xh. You can also continue with the results in ``/data/precomputed/virome/iphop/``.
+The following command takes about 1h. Therefore, you should continue with the results in ``/data/precomputed/virome/iphop_results/``.
 
+    mkdir iphop_results
+    
     iphop predict \
-        --fa_file my_input_phages.fasta \
+        --fa_file CheckV_results/combined.fna \
         --db_dir /data/databases/Sept_2021_pub/ \
-        --out_dir IPHoP_results/
-        --num_threads 4
+        --out_dir iphop_results
 
 **Note:** iPHoP allows to enrich the default database with custom MAGs to improve the host assignment of the viruses.
 
 The iPHoP output is described [here](https://bitbucket.org/MAVERICLab/vcontact2/wiki/Home](https://bitbucket.org/srouxjgi/iphop/src/main/#markdown-header-main-output-files)). 
 
-Look into ``Host_prediction_to_genus_m90.csv``. By default, all virus-host pairs for which the confidence score is higher than the selected cutoff (default = 90) are included. For this exercise, consider only the top hit for each virus (prediction with highest confidence score):
+Look into ``iphop_results/Host_prediction_to_genus_m90.csv``. By default, all virus-host pairs for which the confidence score is higher than the selected cutoff (default = 90) are included. For this exercise, consider only the top hit for each virus (prediction with highest confidence score):
 
-??? done "Is there any virus predicted to infect Bacteroides genus?"
+??? done "1. "Is there any virus predicted to infect Bacteroides genus?"
 
-??? done "Considering the genome completeness estimated in the previous step, which of these Bacteroides phages is predicted to have a complete genome?"
+??? done "2. "Considering the genome completeness estimated in the previous step, which of these Bacteroides phages is predicted to have a complete genome?"
 
 
 ## Step 4 - Functional annotation
 
 Multiple tools can be used for the functional annotation of viral genomes. Here, we will use geNomad (annotate module) to retrieve the annotations for each of the proteins in our predicted viral genomes.
 
-The following command takes about 10 min. You can also continue with the results in ``/data/precomputed/virome/genomad_annotation/``.
+The following command takes about 5 minutes. You can also continue with the results in ``/data/precomputed/virome/genomad_annotation_results/``.
 
     genomad annotate \
-          viral_contigs.fa \
+          CheckV_results/combined.fna \
           geNomad_annotation_results \
+	  --cleanup \
           /data/databases/geNomad_db/
 
 The detailed explanation of this step can be found [here](https://portal.nersc.gov/genomad/pipeline.html#annotate). Check now the ``X_virus_genes.tsv`` file:
@@ -131,7 +136,6 @@ The detailed explanation of this step can be found [here](https://portal.nersc.g
 > Which bacteriophage are we looking for?
 > 
 
-## Extra Step - Viral genome visualization
 
 
 
