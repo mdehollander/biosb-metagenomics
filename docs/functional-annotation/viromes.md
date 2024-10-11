@@ -36,7 +36,7 @@ genomad end-to-end \
     contigs.fa \
     geNomad_results \
     --cleanup \
-    /data/databases/geNomad_db/
+    /data/databases/genomad/genomad_db/
 ```
 
 You can find a description of the geNomad output files [here](https://github.com/jiarong/VirSorter2#detailed-description-on-output-files).
@@ -124,7 +124,7 @@ genomad annotate \
     CheckV_results/combined.fna \
     geNomad_annotation_results \
     --cleanup \
-    /data/databases/geNomad_db/
+    /data/databases/genomad/genomad_db/
 ```
 
 The detailed explanation of this step can be found [here](https://portal.nersc.gov/genomad/pipeline.html#annotate). Check now the ``geNomad_annotation_results/combined_annotate/combined_genes.tsv`` file:
