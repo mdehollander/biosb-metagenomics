@@ -136,9 +136,8 @@ The detailed explanation of this step can be found [here](https://portal.nersc.g
 
 **Note:** Genetic code 11 (translation table 11) is the standard code used for Bacteria, Archaea, prokaryotic viruses and chloroplast proteins.
 
-
-??? done "1. Which bacteriophage are we looking for?"
-> CS_2284: A predicted complete *Clostridium* phage, belonging to the *Caudoviricetes* class, that can integrate into the host genome.
+??? done "Which bacteriophage are we looking for?"
+    CS_2284: A predicted complete *Clostridium* phage, belonging to the *Caudoviricetes* class, that can integrate into the host genome.
 
 
 
