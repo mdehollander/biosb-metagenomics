@@ -60,7 +60,7 @@ You can find a description of the geNomad output files [here](https://github.com
 
 ## Step 2 - Host contamination removal and quality check
 
-While geNomad performs well at identifying proviruses from metagenomic data, CheckV is specifically designed to identify host-virus boundaries with high precision. Further, CheckV allows to estimate the completeness of the predicted viral genomes based on their comparison to a database of complete viral genomes. Therefore, here we use CheckV to quality control the geNomad results and also to trim potential host regions left at the ends of proviruses. 
+While geNomad performs well at identifying proviruses from metagenomic data, **CheckV** is specifically designed to identify host-virus boundaries with high precision. Further, CheckV allows to estimate the completeness of the predicted viral genomes based on their comparison to a database of complete viral genomes. Therefore, here we use CheckV to quality control the geNomad results and also to trim potential host regions left at the ends of proviruses. 
 
 **Note:** This command will take about 10 minutes to complete. Again, you can continue with the results in ``/data/precomputed/virome/checkv_results/``.
 
@@ -91,7 +91,7 @@ The CheckV output is described [here](https://bitbucket.org/berkeleylab/checkv/s
 
 We will use **iPHoP** for bacterial host assignment of the viruses. Although iPHoP provides both genus- and species-level host predictions, we will focus solely on genus-level assignments. This is because iPHoP offers high-confidence predictions at the genus level (with an estimated false discovery rate of less than 10%), while the confidence decreases at the species level.
 
-The following command takes about 1h. Therefore, you should continue with the results in ``/data/precomputed/virome/iphop_results/``.
+**Note:** The following command takes about 1h. Therefore, you should continue with the results in ``/data/precomputed/virome/iphop_results/``.
 
     mkdir iphop_results
     
@@ -116,7 +116,7 @@ Look into ``iphop_results/Host_prediction_to_genus_m90.csv``. By default, all vi
 
 ## Step 4 - Functional annotation
 
-Multiple tools can be used for the functional annotation of viral genomes. Here, we will use geNomad (annotate module) to retrieve the annotations for each of the proteins in our predicted viral genomes.
+Multiple tools can be used for the functional annotation of viral genomes. Here, we will use **geNomad** (annotate module) to retrieve the annotations for each of the proteins in our predicted viral genomes.
 
 The following command takes about 10 minutes. You can also continue with the results in ``/data/precomputed/virome/genomad_annotation_results/``.
 
