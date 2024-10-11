@@ -118,7 +118,7 @@ Look into ``iphop_results/Host_prediction_to_genus_m90.csv``. By default, all vi
 
 Multiple tools can be used for the functional annotation of viral genomes. Here, we will use **geNomad** (annotate module) to retrieve the annotations for each of the proteins in our predicted viral genomes.
 
-The following command takes about 10 minutes. You can also continue with the results in ``/data/precomputed/virome/genomad_annotation_results/``.
+**Note:** The following command takes about 10 minutes. You can also continue with the results in ``/data/precomputed/virome/genomad_annotation_results/``.
 
     genomad annotate \
           CheckV_results/combined.fna \
@@ -128,16 +128,16 @@ The following command takes about 10 minutes. You can also continue with the res
 
 The detailed explanation of this step can be found [here](https://portal.nersc.gov/genomad/pipeline.html#annotate). Check now the ``geNomad_annotation_results/combined_annotate/combined_genes.tsv`` file:
 
- ??? done "1. "Does any of the identified viruses use an alternative genetic code?"
+??? done "1. "Does any of the identified viruses use an alternative genetic code?"
     No, all the viruses use the standard genetic code (translation table 11).
 
- ??? done "2. "Are any of the identified viruses encoding proteins that enable integration into the bacterial genome (integrases)?"
+??? done "2. "Are any of the identified viruses encoding proteins that enable integration into the bacterial genome (integrases)?"
     Yes, at least 7 viruses encode integrases (GPD_74496, GPD_79092, ELGV_14024, CS_100, CS_659, CS_1726 and CS_2284)  
 
 **Note:** Genetic code 11 (translation table 11) is the standard code used for Bacteria, Archaea, prokaryotic viruses and chloroplast proteins.
 
 
-??? done  "Which bacteriophage are we looking for?"
+??? done " "Which bacteriophage are we looking for?"
 > CS_2284: A predicted complete *Clostridium* phage, belonging to the *Caudoviricetes* class, that can integrate into the host genome.
 
 
