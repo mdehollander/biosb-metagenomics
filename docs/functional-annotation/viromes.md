@@ -51,7 +51,7 @@ You can find a description of the geNomad output files [here](https://github.com
     297,029 bases (MGV_98132).
 
 ??? done "3. Regarding the viral taxonomy, which is the most common viral class among identified viruses?"
-    **_Caudoviricetes**_.
+    *Caudoviricetes*.
 
 ??? done "4. Do we identify any single-stranded DNA virus (ssDNA)?"
     Yes, there are 12 ssDNA (belonging to Monodnaviria realm).     
@@ -137,7 +137,7 @@ The detailed explanation of this step can be found [here](https://portal.nersc.g
 
 ??? done  
 > Which bacteriophage are we looking for?
-> CS_2284: A predicted complete **_Clostridium_** phage, belonging to the **_Caudoviricetes**_ class, that can integrate into the host genome.
+> CS_2284: A predicted complete *Clostridium* phage, belonging to the *Caudoviricetes* class, that can integrate into the host genome.
 
 
 
