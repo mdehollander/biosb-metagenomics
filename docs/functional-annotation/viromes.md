@@ -14,6 +14,7 @@ By the end of this exercise, your objective will be to identify the bacteriophag
 > - Is predicted to have a **complete genome**  
 > - Is predicted to infect the **Clostridium** genus  
 > - Has the ability to **integrate** into the bacterial genome  
+  
 
 > **Note:** For this practical, several tools are required for the viral identification and annotation pipeline:  
 > - **geNomad**  
