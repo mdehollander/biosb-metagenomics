@@ -67,7 +67,7 @@ checkv \
     end_to_end \
     geNomad_results/viral_contigs_summary/viral_contigs_virus.fna \
     CheckV_results \
-    -d /data/databases/checkv-db-v1.5
+    -d /data/databases/checkv-db-v1.4
 ```
 
 The CheckV output is described [here](https://bitbucket.org/berkeleylab/checkv/src/master/). Look into ``CheckV_results/quality_summary.tsv``.
