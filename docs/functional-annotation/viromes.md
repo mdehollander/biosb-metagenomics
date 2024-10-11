@@ -60,13 +60,15 @@ You can find a description of the geNomad output files [here](https://github.com
 
 ## Step 2 - Host contamination removal and quality check
 
-While geNomad performs well at identifying proviruses from metagenomic data, CheckV is specifically designed to identify host-virus boundaries with high precision. Further, CheckV allows to estimate the completeness of the predicted viral genomes based on their comparison to a database of complete viral genomes. Therefore, here we use CheckV to quality control the geNomad results and also to trim potential host regions left at the ends of proviruses. This command will take about 10 minutes to complete. Again, you can continue with the results in ``/data/precomputed/virome/checkv_results/``.
+While geNomad performs well at identifying proviruses from metagenomic data, CheckV is specifically designed to identify host-virus boundaries with high precision. Further, CheckV allows to estimate the completeness of the predicted viral genomes based on their comparison to a database of complete viral genomes. Therefore, here we use CheckV to quality control the geNomad results and also to trim potential host regions left at the ends of proviruses. 
 
-	checkv \
-            end_to_end \
-	    geNomad_results/viral_contigs_summary/viral_contigs_virus.fna \
-            CheckV_results \
-            -d /data/databases/checkv-db-v1.5
+**Note:** This command will take about 10 minutes to complete. Again, you can continue with the results in ``/data/precomputed/virome/checkv_results/``.
+
+    checkv \
+        end_to_end \
+        geNomad_results/viral_contigs_summary/viral_contigs_virus.fna \
+        CheckV_results \
+        -d /data/databases/checkv-db-v1.5
 
 
 The CheckV output is described [here](https://bitbucket.org/berkeleylab/checkv/src/master/). Look into ``CheckV_results/quality_summary.tsv``.
