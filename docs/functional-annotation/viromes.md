@@ -14,7 +14,7 @@ By the end of this exercise, your objective will be to:
 > Identify the bacteriophage that satisfies all of the following criteria:
 > - Belongs to the **_Caudoviricetes_** class  
 > - Is predicted to have a **complete genome**
-> - Is predicted to infect the **_Bacterioides_** genus
+> - Is predicted to infect the **_Clostridium_** genus
 > - Has the ability to **integrate** into the bacterial genome
 
 **Note:** For this practical several tools are required the viral identification and annotation pipeline:
@@ -29,7 +29,7 @@ All these tools and the necessary databases have been preinstalled and are ready
 
 First, we run **geNomad** to identify viral sequences in our data. We use the ``--enable-score-calibration`` option to compute false discovery rates, allowing us to set a threshold to achieve a desired proportion of false positives (here we will use an FDR < 0.05). Further, we add the use the ``--cleanup`` flag to remove intermediate files and the ``--disable-find-proviruses`` option to avoid geNomad performing an initial prunning to remove potential contaminant host regions from proviral sequences (we will do this in the next step with CheckV). 
 
-**Note:** The following command takes about 5 minutes. You can also continue with the results in ``/data/precomputed/virome/genomad_results/``.
+**Note:** The following command takes about 10 minutes. You can also continue with the results in ``/data/precomputed/virome/genomad_results/``.
 
       genomad end-to-end \
           --enable-score-calibration \
@@ -51,7 +51,7 @@ You can find a description of the geNomad output files [here](https://github.com
     297,029 bases (MGV_98132).
 
 ??? done "3. Regarding the viral taxonomy, which is the most common viral class among identified viruses?"
-    Caudoviricetes.
+    **_Caudoviricetes**_.
 
 ??? done "4. Do we identify any single-stranded DNA virus (ssDNA)?"
     Yes, there are 12 ssDNA (belonging to Monodnaviria realm).     
@@ -96,6 +96,7 @@ The following command takes about 1h. Therefore, you should continue with the re
     iphop predict \
         --fa_file CheckV_results/combined.fna \
         --db_dir /data/databases/Sept_2021_pub/ \
+	--num_threads 8 \
         --out_dir iphop_results
 
 **Note:** iPHoP allows to enrich the default database with custom MAGs to improve the host assignment of the viruses.
@@ -104,16 +105,18 @@ The iPHoP output is described [here](https://bitbucket.org/MAVERICLab/vcontact2/
 
 Look into ``iphop_results/Host_prediction_to_genus_m90.csv``. By default, all virus-host pairs for which the confidence score is higher than the selected cutoff (default = 90) are included. For this exercise, consider only the top hit for each virus (prediction with highest confidence score):
 
-??? done "1. "Is there any virus predicted to infect Bacteroides genus?"
+ ??? done "1. "Is there any virus predicted to infect the **_Clostridium_** genus?"
+    Yes, 2 viruses are predicted to infect **_Clostridium_**.
 
-??? done "2. "Considering the genome completeness estimated in the previous step, which of these Bacteroides phages is predicted to have a complete genome?"
-
+ ??? done "2. "Considering the genome completeness estimated in the previous step, which of these **_Clostridium_** phages is predicted to have a complete genome?"
+    Both phages have a complete genome (with DTRs).
+    
 
 ## Step 4 - Functional annotation
 
 Multiple tools can be used for the functional annotation of viral genomes. Here, we will use geNomad (annotate module) to retrieve the annotations for each of the proteins in our predicted viral genomes.
 
-The following command takes about 5 minutes. You can also continue with the results in ``/data/precomputed/virome/genomad_annotation_results/``.
+The following command takes about 10 minutes. You can also continue with the results in ``/data/precomputed/virome/genomad_annotation_results/``.
 
     genomad annotate \
           CheckV_results/combined.fna \
@@ -121,20 +124,20 @@ The following command takes about 5 minutes. You can also continue with the resu
 	  --cleanup \
           /data/databases/geNomad_db/
 
-The detailed explanation of this step can be found [here](https://portal.nersc.gov/genomad/pipeline.html#annotate). Check now the ``X_virus_genes.tsv`` file:
+The detailed explanation of this step can be found [here](https://portal.nersc.gov/genomad/pipeline.html#annotate). Check now the ``geNomad_annotation_results/combined_annotate/combined_genes.tsv`` file:
 
-??? done "Does any of the identified viruses use an alternative genetic code?"
-    We find 2 viruses ....
+ ??? done "1. "Does any of the identified viruses use an alternative genetic code?"
+    No, all the viruses use the standard genetic code (translation table 11).
 
-??? done "Are any of the identified viruses encoding proteins that enable integration into the bacterial genome?"
-    Yes, X ....    
+ ??? done "2. "Are any of the identified viruses encoding proteins that enable integration into the bacterial genome (integrases)?"
+    Yes, at least 7 viruses encode integrases (GPD_74496, GPD_79092, ELGV_14024, CS_100, CS_659, CS_1726 and CS_2284)  
 
 **Note:** Genetic code 11 (translation table 11) is the standard code used for Bacteria, Archaea, prokaryotic viruses and chloroplast proteins.
 
 
 ??? done  
 > Which bacteriophage are we looking for?
-> 
+> CS_2284: A predicted complete **_Clostridium_** phage, belonging to the **_Caudoviricetes**_ class, that can integrate into the host genome.
 
 
 
