@@ -101,9 +101,9 @@ We will use **iPHoP** for bacterial host assignment of the viruses. Although iPH
 	--num_threads 8 \
         --out_dir iphop_results
 
-**Note:** iPHoP allows to enrich the default database with custom MAGs to improve the host assignment of the viruses.
-
 The iPHoP output is described [here](https://bitbucket.org/MAVERICLab/vcontact2/wiki/Home](https://bitbucket.org/srouxjgi/iphop/src/main/#markdown-header-main-output-files)). 
+
+**Note:** iPHoP allows to enrich the default database with custom MAGs to improve the host assignment of the viruses.
 
 Look into ``iphop_results/Host_prediction_to_genus_m90.csv``. By default, all virus-host pairs for which the confidence score is higher than the selected cutoff (default = 90) are included. For this exercise, consider only the top hit for each virus (prediction with highest confidence score):
 
