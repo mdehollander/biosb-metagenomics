@@ -100,6 +100,7 @@ iphop predict \
     --db_dir /data/databases/Sept_2021_pub/ \
     --num_threads 8 \
     --out_dir iphop_results
+```
 
 The iPHoP output is described [here](https://bitbucket.org/MAVERICLab/vcontact2/wiki/Home](https://bitbucket.org/srouxjgi/iphop/src/main/#markdown-header-main-output-files)). 
 
