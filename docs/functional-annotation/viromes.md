@@ -8,7 +8,7 @@ We will now identify viral sequences from metagenomic data. You will be provided
 4. Functionally **annotate** each identified virus.
 
 
-By the end of this exercise, your objective will be to identify the bacteriophage that satisfies all of the following criteria:  
+By the end of this exercise, our objective will be to identify the bacteriophage that satisfies all of the following criteria:  
 > - Belongs to the ***Caudoviricetes*** class  
 > - Is predicted to have a **complete genome**  
 > - Is predicted to infect the ***Clostridium*** genus  
