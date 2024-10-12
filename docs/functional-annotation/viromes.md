@@ -90,7 +90,7 @@ The CheckV output is described [here](https://bitbucket.org/berkeleylab/checkv/s
 
 We will use **iPHoP** for bacterial host assignment of the viruses. Although iPHoP provides both genus- and species-level host predictions, we will focus solely on genus-level assignments. This is because iPHoP offers high-confidence predictions at the genus level (with an estimated false discovery rate of less than 10%), while the confidence decreases at the species level.
 
-**Note:** The following command takes about 1 hour. Therefore, you should continue with the results in ``/data/precomputed/virome/iphop_results/``.
+**Note:** The following command can take several hours. Therefore, you should continue with the results in ``/data/precomputed/virome/iphop_results/``.
 ```bash
 mkdir iphop_results
 
