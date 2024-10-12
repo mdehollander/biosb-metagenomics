@@ -7,10 +7,7 @@
 
 [Watch the "Sulfur Cave" video to see bubbles drifting along the invisible stream of greenhouse gases (for fun).](https://www.gesslab.org/projects?wix-vod-video-id=a7aaef92d15549e6a5630d18e73484b7&wix-vod-comp-id=comp-jd73rsf5)
 
-Data are precomputed and store at folder /data/precomputed/cave_data containing:
-- co-assembly (3 samples; 2 from biofilm and 1 from the laboratory)
-- Depth table
-- Binning results
+Precomputed data is stored in the /data/precomputed/cave_data folder, which contains the following:: 1) Co-assembly of three samples (two from biofilm and one from the laboratory), 2) Depth table and 3) Binning results
 
 !!! question "Exercise" 
     - Analyze the microbial bins to identify which organism is utilizing CH₄ (methane) for growth. What is the taxonomic classification of this organism? Investigate the presence of relevant gene clusters responsible for methane metabolism.
