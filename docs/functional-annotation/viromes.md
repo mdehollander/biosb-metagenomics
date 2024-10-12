@@ -39,7 +39,7 @@ genomad end-to-end \
     /data/databases/genomad/genomad_db/
 ```
 
-You can find a description of the geNomad output files [here](https://github.com/jiarong/VirSorter2#detailed-description-on-output-files).
+You can find a description of the geNomad output files [here]([https://github.com/jiarong/VirSorter2#detailed-description-on-output-files](https://portal.nersc.gov/genomad/quickstart.html#understanding-the-outputs).
 
 Look into ``geNomad_results/contigs_summary/contigs_virus_summary.tsv``. 
 
