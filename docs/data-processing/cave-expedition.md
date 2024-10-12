@@ -3,16 +3,16 @@
     - Seek evidence identifying the primary consumers (CO2 & CH4) within this extreme environment.
 
 ![Cave Microbiome Sampling](../assets/cave1-1.png)
-(a) General overview of the cave. (b) Detailed images of the cave biofilms. The dashed line in panel a marks the stable gaseous chemocline between the volcanic gases (below the chemocline) and atmospheric air (above the chemocline). (c) A closer look on the biofilm where mark 7 shows the bare cave wall after biofilm sampling.
+(a) General overview of the cave. The dashed line in panel a marks the stable gaseous chemocline between the volcanic gases (below the chemocline) and atmospheric air (above the chemocline). (b) Detailed images of the cave biofilms. (c) A closer look on the biofilm where mark 7 shows the bare cave wall after biofilm sampling.
 
 [Watch the "Sulfur Cave" video to see bubbles drifting along the invisible stream of greenhouse gases (for fun).](https://www.gesslab.org/projects?wix-vod-video-id=a7aaef92d15549e6a5630d18e73484b7&wix-vod-comp-id=comp-jd73rsf5)
 
-Precomputed data is stored in the /data/precomputed/cave_data folder, which contains the following:: 1) Co-assembly of three samples (two from biofilm and one from the laboratory), 2) Depth table and 3) Binning results
+Precomputed data is stored in the /data/precomputed/cave_data folder, which contains the following: 1) Co-assembly of three samples (two from biofilm and one from the laboratory), 2) Depth table and 3) Binning results
 
 !!! question "Exercise" 
     - Analyze the microbial bins to identify which organism is utilizing CH₄ (methane) for growth. What is the taxonomic classification of this organism? Investigate the presence of relevant gene clusters responsible for methane metabolism.
     - Investigate whether it is common for organisms within the identified taxon to utilize CH₄ for growth. If not, outline the steps and analyses you would perform to confirm and demonstrate this metabolic capability.
-    - Perform a similar investigation to identify which organism is fixing CO₂ for growth. What is the taxonomy of this organism, and what gene clusters are involved in CO₂ fixation?
+    - Perform a similar investigation to identify which organism is fixing CO₂ for growth. What is the taxonomy of this organism, and what genes are involved in CO₂ fixation?
     
     
 ??? done "Tip 1: general directions"
