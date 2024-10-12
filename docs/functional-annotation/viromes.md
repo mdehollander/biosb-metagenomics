@@ -76,7 +76,7 @@ The CheckV output is described [here](https://bitbucket.org/berkeleylab/checkv/s
     9 proviruses, 46 viruses.
 
 ??? done "2. How many low, medium, and high quality viruses do we detect? How many complete viruses? How many of them have direct terminal repeats?"
-    15 viruses with low-quality, 16 with medium-quality and 9 with high-quality.
+    11 viruses with low-quality, 20 with medium-quality and 9 with high-quality.
     15 viruses are complete. From them, 10 have direct terminal repeats (DTRs).
 
 **Note:** Depending on the project's goals, it may be advisable to select only viruses predicted to be of at least medium quality. However, for this exercise, we will proceed with all available sequences.
