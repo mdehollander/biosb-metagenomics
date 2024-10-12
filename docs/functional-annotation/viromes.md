@@ -53,7 +53,7 @@ Look into ``geNomad_results/contigs_summary/contigs_virus_summary.tsv``.
     *Caudoviricetes*.
 
 ??? done "4. Do we identify any single-stranded DNA virus (ssDNA)?"
-    Yes, there are 12 ssDNA (belonging to Monodnaviria realm).     
+    Yes, there are 13 ssDNA (belonging to Monodnaviria realm).     
 
 **Note:** A useful resource where you can find all the information about the viral taxonomy is [here](https://ictv.global/taxonomy).  
 
