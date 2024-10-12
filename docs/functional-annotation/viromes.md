@@ -70,7 +70,7 @@ checkv \
     -d /data/databases/checkv-db-v1.4
 ```
 
-The CheckV output is described [here](https://bitbucket.org/berkeleylab/checkv/src/master/](https://bitbucket.org/berkeleylab/checkv/src/master/#markdown-header-output-files). Look into ``CheckV_results/quality_summary.tsv``.
+The CheckV output is described [here](https://bitbucket.org/berkeleylab/checkv/src/master/#markdown-header-output-files). Look into ``CheckV_results/quality_summary.tsv``.
 
 ??? done "1. How many proviruses do you find and how many viruses?"
     9 proviruses, 46 viruses.
