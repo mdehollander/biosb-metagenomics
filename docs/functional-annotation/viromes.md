@@ -96,7 +96,7 @@ mkdir iphop_results
 
 iphop predict \
     --fa_file CheckV_results/combined.fna \
-    --db_dir /data/databases/Sept_2021_pub/ \
+    --db_dir /data/databases/Aug_2023_pub_rw/ \
     --num_threads 8 \
     --out_dir iphop_results
 ```
