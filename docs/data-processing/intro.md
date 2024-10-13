@@ -13,5 +13,5 @@ rhizosphere
 
 ## Slides
 [:fontawesome-solid-file-pdf: Download the presentation (2022)](../assets/from_zero_to_hero.pdf){: .md-button }
-[:fontawesome-solid-file-pdf: Download the presentation (2024)](../assets/from_zero_to_hero.pdf){: .md-button }
+[:fontawesome-solid-file-pdf: Download the presentation (2024)](../assets/mgx_order_to_chaos.pdf){: .md-button }
 
