@@ -101,7 +101,7 @@ iphop predict \
     --out_dir iphop_results
 ```
 
-The iPHoP output is described [here](https://bitbucket.org/MAVERICLab/vcontact2/wiki/Home](https://bitbucket.org/srouxjgi/iphop/src/main/#markdown-header-main-output-files)). 
+The iPHoP output is described [here](https://bitbucket.org/srouxjgi/iphop/src/main/#markdown-header-main-output-files). 
 
 **Note:** iPHoP allows to enrich the default database with custom MAGs to improve the host assignment of the viruses.
 
